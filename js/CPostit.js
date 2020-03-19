@@ -32,7 +32,7 @@ class postit {
     myElement.style.left = this.x + "px";
     myElement.style.width = "150px";
     myElement.style.height = "150px";
-    myElement.style.background = this.color;
+    myElement.style.background = "yellow";
     myElement.style.padding = "5px";
     myElement.style.color = "black";
     myElement.innerHTML = "postit" + ' ' + this.speed;

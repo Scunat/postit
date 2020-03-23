@@ -3,7 +3,7 @@ let move = false;
 let x;
 let y;
 let idBouge = 0;
-var tabDingo = new Array();
+var tabPost = new Array();
 
 
 document.addEventListener('mousemove', e => {
@@ -12,22 +12,22 @@ document.addEventListener('mousemove', e => {
 });
 document.addEventListener('mouseup', () => {
   console.log("on stop !");
-  idBouge= 0
+  idBouge = 0
   move = false;
 })
 
-document.getElementById('dingPlus').addEventListener('mousedown', () => {
-    let post = new postit(tabDingo.length + 1, 100, 100, 12)
-    tabDingo.push(post);
-    tabDingo[(tabDingo.length - 1)].affichePostit();
+document.getElementById('post').addEventListener('mousedown', () => {
+    let post = new postit(tabPost.length + 1, 100, 100, 12)
+    tabPost.push(post);
+    tabPost[(tabPost.length - 1)].affichePostit();
 
 });
 
 function refresh() {
   if (move && idBouge != 0) {
     console.log("on déplace !");
-    tabDingo[(idBouge - 1)].changePlace(x, y);
-    tabDingo[(idBouge - 1)].affichePostit();
+    tabPost[(idBouge - 1)].changePlace(x, y);
+    tabPost[(idBouge - 1)].affichePostit();
   }
   setTimeout(refresh, 300);
 }
@@ -53,5 +53,5 @@ function jdeAttachElem(parentId, elem, classElem = [], idElem = "", fonct = "") 
 }
 
 function delPost(numberPostit) {
-    delete tabDingo[numberPostit - 1]
+    delete tabPost[numberPostit - 1]
 }

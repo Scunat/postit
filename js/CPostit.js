@@ -1,15 +1,18 @@
-//Création de la class pstit avec les variables et les fonctions.
+//Création de la class postit avec les variables et les fonctions.
 class postit {
   X;
   y;
   color;
+  texts;
   speed; //vitesse
+  numberPostit;
 
-  constructor(x, y, color, speed) {
+  constructor(x, y, color, speed, numberPostit) {
     this.x = x;
     this.y = y;
     this.color = color;
     this.speed = speed;
+    this.numberPostit = numberPostit;
   }
 
   changeSpeed(speed) {
@@ -28,66 +31,39 @@ class postit {
     let myElement;
     let creation = false;
 
-    if (document.getElementById('bouge') == null) {
+    if (document.getElementById("bouge" + this.numberPostit) == null) {
        
         myElement = document.createElement('div');
         creation = true;
     }
     else {
         console.log("Mon elem Existe")
-        myElement = document.getElementById('bouge');
+        myElement = document.getElementById("bouge" + this.numberPostit);
     }
   
     myElement.style.position = "fixed";
-    myElement.id = "bouge"
+    myElement.id = "bouge" + this.numberPostit;
     myElement.style.top = this.y + "px";
     myElement.style.left = this.x + "px";
     myElement.style.width = "150px";
     myElement.style.height = "150px";
     myElement.style.background = "yellow";
-    myElement.style.padding = "5px";
-    myElement.style.color = "black";
-    myElement.innerHTML = "postit" + " " + this.speed;
     myElement.style.backgroundRepeat = "no-repeat";
     myElement.style.backgroundSize = "contain";
-    document.body.appendChild(myElement);
 
-    myElement.addEventListener("click", () => {
-      console.log("on bouge !");
-      move = true;
-    });
-    if (postit) {
+
+    if (creation) {
       document.body.appendChild(myElement);
+      myElement.innerHTML += "mon Num = " + this.numberPostit
+      jdeAttachElem("bouge" + this.numberPostit, "div", ["basDroite"], "menBas" + this.numberPostit)
+      jdeAttachElem("menBas" + this.numberPostit, 'i', ["fas", "fa-arrows-alt"], "", () => {
+          idBouge = this.numberPostit;
+          move = true;
+      });
+      jdeAttachElem("menBas" + this.numberPostit, 'i', ["fas", "fa-trash-alt"], "", () => {
+          document.getElementById("bouge" + this.numberPostit).remove()
+          delPost(this.numberPostit)
+      });
     }
   }
 }
-myPostit = new postit(100, 100, 30, "blue");
-myPostit.affichePostit();
-
-//Faire bouger le postit avec des évènements
-let move = false;
-let x;
-let y;
-
-let myPostits = new postit("black", 50, 50, 12);
-myPostit.affichePostit();
-
-document.addEventListener("mousemove", e => {
-  x = e.clientX;
-  y = e.clientY;
-});
-document.addEventListener("mouseup", () => {
-  console.log("on stop !");
-  move = false;
-});
-
-function refresh() {
-  if (move) {
-    console.log("on déplace !");
-    myPostits.changePlace(x, y);
-    myPostits.affichePostit();
-  }
-  setTimeout(refresh, 300);
-}
-
-refresh();

@@ -8,7 +8,7 @@ class postit {
   number;
 
   constructor(numPost, posX, posY, color, speed) {
-    this.posX = x;
+    this.posX = posX;
     this.posY = posY;
     this.color = color;
     this.speed = speed;

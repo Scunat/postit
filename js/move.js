@@ -42,7 +42,7 @@ function jdeAttachElem(parentId, elem, classElem = [], idElem = "", fonct = "") 
         }
 
     }
-    if (idElem != "idBouge") {
+    if (idElem != "") {
         elemACreer.id = idElem
     }
     if (fonct != "") {

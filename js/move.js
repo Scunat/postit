@@ -42,7 +42,7 @@ function jdeAttachElem(parentId, elem, classElem = [], idElem = "", fonct = "") 
         }
 
     }
-    if (idElem != "") {
+    if (idElem != "idBouge") {
         elemACreer.id = idElem
     }
     if (fonct != "") {
@@ -52,6 +52,6 @@ function jdeAttachElem(parentId, elem, classElem = [], idElem = "", fonct = "") 
 
 }
 
-function delPost(numberPostit) {
-    delete tabPost[numberPostit - 1]
+function delPost(numPost) {
+    delete tabPost[numPost - 1]
 }

@@ -1,18 +1,18 @@
 //Création de la class postit avec les variables et les fonctions.
 class postit {
-  X;
-  y;
+  posX;
+  posY;
   color;
   texts;
   speed; //vitesse
-  numberPostit;
+  number;
 
-  constructor(x, y, color, speed, numberPostit) {
-    this.x = x;
-    this.y = y;
+  constructor(numPost, posX, posY, color, speed) {
+    this.posX = x;
+    this.posY = posY;
     this.color = color;
     this.speed = speed;
-    this.numberPostit = numberPostit;
+    this.number = numPost;
   }
 
   changeSpeed(speed) {
@@ -20,8 +20,8 @@ class postit {
   }
 
   changePlace(x, y) {
-    this.x = x;
-    this.y = y;
+    this.posX = x;
+    this.posY = y;
   }
 
   changeColor(color) {
@@ -31,20 +31,20 @@ class postit {
     let myElement;
     let creation = false;
 
-    if (document.getElementById("bouge" + this.numberPostit) == null) {
+    if (document.getElementById("bouge" + this.number) == null) {
        
         myElement = document.createElement('div');
         creation = true;
     }
     else {
         console.log("Mon elem Existe")
-        myElement = document.getElementById("bouge" + this.numberPostit);
+        myElement = document.getElementById("bouge" + this.number);
     }
   
     myElement.style.position = "fixed";
-    myElement.id = "bouge" + this.numberPostit;
-    myElement.style.top = this.y + "px";
-    myElement.style.left = this.x + "px";
+    myElement.id = "bouge" + this.number;
+    myElement.style.top = this.posY + "px";
+    myElement.style.left = this.posX + "px";
     myElement.style.width = "150px";
     myElement.style.height = "150px";
     myElement.style.background = "yellow";
@@ -54,15 +54,15 @@ class postit {
 
     if (creation) {
       document.body.appendChild(myElement);
-      myElement.innerHTML += "mon Num = " + this.numberPostit
-      jdeAttachElem("bouge" + this.numberPostit, "div", ["basDroite"], "menBas" + this.numberPostit)
-      jdeAttachElem("menBas" + this.numberPostit, 'i', ["fas", "fa-arrows-alt"], "", () => {
-          idBouge = this.numberPostit;
+      myElement.innerHTML += "mon Num = " + this.number
+      jdeAttachElem("bouge" + this.number, "div", ["basDroite"], "menBas" + this.number)
+      jdeAttachElem("menBas" + this.number, 'i', ["fas", "fa-arrows-alt"], "", () => {
+          idBouge = this.number;
           move = true;
       });
-      jdeAttachElem("menBas" + this.numberPostit, 'i', ["fas", "fa-trash-alt"], "", () => {
-          document.getElementById("bouge" + this.numberPostit).remove()
-          delPost(this.numberPostit)
+      jdeAttachElem("menBas" + this.number, 'i', ["fas", "fa-trash-alt"], "", () => {
+          document.getElementById("bouge" + this.number).remove()
+          delPost(this.number)
       });
     }
   }
